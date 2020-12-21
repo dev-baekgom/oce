@@ -42,10 +42,8 @@
 }
 
 #editor{
-    position: fixed;
-    top:71px;
-    height: 70%;
-    overflow-y: hidden;
+  position: absolute;
+  top:36px;
 }
 
 .prism-live{

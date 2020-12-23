@@ -13,12 +13,12 @@ function reload_preview(){
 }
 
 function download(){
-    var name = "my_code_on_online_editor";
+    var name = document.getElementById("Title").innerHTML;
     var text = document.getElementById("editor").value;
     text = text.replace(/\n/g, "\r\n"); // To retain the Line breaks.
     var blob = new Blob([text], { type: "text/html"});
     var anchor = document.createElement("a");
-    anchor.download = name + ".html";
+    anchor.download = name;
     anchor.href = window.URL.createObjectURL(blob);
     anchor.target ="_blank";
     anchor.style.display = "none"; // just to be safe!

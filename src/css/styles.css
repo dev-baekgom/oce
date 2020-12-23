@@ -2,6 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
 ::selection{background-color: hsla(214, 100%, 65%, 0.42);}
 
+*:focus{outline: none;}
+
+
 #top-bar{
     top: 0;
     position: fixed;
@@ -13,11 +16,11 @@
 
 #Title{
     margin-left: 10px;
-    top : -32.5px;
+    top : -20px;
     position: fixed;
     font-family: 'Oswald', sans-serif;
     color: white;
-    font-size: 40px;
+    font-size: 35px;
 }
 
 .top-button:hover{

@@ -13,16 +13,19 @@ function reload_preview(){
 }
 
 function download(){
-    var name = document.getElementById("Title").innerHTML;
-    var text = document.getElementById("editor").value;
-    text = text.replace(/\n/g, "\r\n"); // To retain the Line breaks.
-    var blob = new Blob([text], { type: "text/html"});
-    var anchor = document.createElement("a");
-    anchor.download = name;
-    anchor.href = window.URL.createObjectURL(blob);
-    anchor.target ="_blank";
-    anchor.style.display = "none"; // just to be safe!
-    document.body.appendChild(anchor);
-    anchor.click();
-    document.body.removeChild(anchor);
+    alertify.prompt('Save As..', '', function(evt, value){real_download(value)})
+}
+
+function real_download(name){
+  var text = document.getElementById("editor").value;
+  text = text.replace(/\n/g, "\r\n"); // To retain the Line breaks.
+  var blob = new Blob([text], { type: "text/html"});
+  var anchor = document.createElement("a");
+  anchor.download = name;
+  anchor.href = window.URL.createObjectURL(blob);
+  anchor.target ="_blank";
+  anchor.style.display = "none"; // just to be safe!
+  document.body.appendChild(anchor);
+  anchor.click();
+  document.body.removeChild(anchor);
 }

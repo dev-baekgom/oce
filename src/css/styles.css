@@ -47,18 +47,16 @@
     height: 100%;
     width: 100%;
     background-color: #ffffff;
-    overflow: auto;
 }
 
 #editor{
   resize: none;
-  position: absolute;
   height: 100%;
   width: 100%;
 }
 
 div.prism-live{
-  position: fixed;
+  position: absolute;
   top:60px;
 }
 

@@ -29,3 +29,16 @@ function real_download(name){
   anchor.click();
   document.body.removeChild(anchor);
 }
+
+var isCtrl = false;
+document.onkeyup=function(e){
+    if(e.keyCode == 17) isCtrl=false;
+}
+
+document.onkeydown=function(e){
+    if(e.keyCode == 17) isCtrl=true;
+    if(e.keyCode == 83 && isCtrl == true) {
+        download();
+        return false;
+    }
+}

@@ -1,3 +1,8 @@
+$(document).ready(function() {
+  reload_count();
+  reload_preview();
+});
+
 $( function() {
     $( "#preview_wrap" )
             .resizable()
@@ -13,7 +18,24 @@ function reload_preview(){
 }
 
 function download(){
-    alertify.prompt('Save As..', '', function(evt, value){real_download(value)})
+  bootbox.prompt({
+      title: "Save As..",
+      backdrop: true,
+      callback: function (result) {
+        if(result != null){
+          if(result == ''){
+            bootbox.alert({
+              title: 'Hey!!',
+              message: 'Type something!!!',
+              backdrop: true
+            })
+          }
+          else {
+            real_download(result);
+          }
+        }
+      }
+  });
 }
 
 function real_download(name){
@@ -30,15 +52,24 @@ function real_download(name){
   document.body.removeChild(anchor);
 }
 
+function reload_count(){
+  var text = document.getElementById('editor').value;
+  var letters =  text.length;
+  var words = text.match(/\S+/g).length;
+  document.getElementById('wordcount').innerHTML = letters + ' letters / ' + words + ' words';
+}
+
 var isCtrl = false;
 document.onkeyup=function(e){
-    if(e.keyCode == 17) isCtrl=false;
+  reload_count();
+  if(e.keyCode == 17) isCtrl=false;
 }
 
 document.onkeydown=function(e){
-    if(e.keyCode == 17) isCtrl=true;
-    if(e.keyCode == 83 && isCtrl == true) {
-        download();
-        return false;
-    }
+  reload_count();
+  if(e.keyCode == 17) isCtrl=true;
+  if(e.keyCode == 83 && isCtrl == true) {
+      download();
+      return false;
+  }
 }

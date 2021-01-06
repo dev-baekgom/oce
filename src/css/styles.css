@@ -17,7 +17,7 @@
 
 #Title{
     margin-left: 10px;
-    top : -15px;
+    top : 10px;
     position: fixed;
     font-family: 'Staatliches', cursive;
     color: white;
@@ -31,7 +31,7 @@
 #preview_wrap{
     position: fixed;
     padding-top:20px;
-    background-color: #C6C5FE;
+    background-color: #565e5e;
     z-index: 1;
     visibility: visible;
     top : 100px;
@@ -53,6 +53,16 @@
   resize: none;
   height: 100%;
   width: 100%;
+}
+
+#wordcount{
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 0.5em;
+  padding: 5px;
+  color: white;
+  background-color: #444444;
 }
 
 div.prism-live{

@@ -75,22 +75,5 @@
 			<iframe id="preview" frameborder="0"></iframe>
 		</div>
 		<div id="wordcount">0 words</div>
-		<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase.js"></script>
-		<script>
-			var config = {
-				apiKey: "AIzaSyCLwmjktfpwLh32sVsGWGzGs169y6YoZJw",
-				authDomain: "oce-db.firebaseapp.com",
-				databaseURL: "https://oce-db-default-rtdb.firebaseio.com",
-				storageBucket: "oce-db.appspot.com"
-			};
-			firebase.initializeApp(config);
-
-			var database = firebase.database();
-			firebase.database().ref('test/' + 1).set({
-				username: 'name',
-				email: 'email',
-				profile_picture : 'imageUrl'
-			});
-		</script>
 	</body>
 </html>

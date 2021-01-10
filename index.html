@@ -17,6 +17,33 @@
 		<!--clicky-->
 		<script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101293020);</script>
 		<script async src="//static.getclicky.com/js"></script>
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+		     https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+		<script>
+		  // Your web app's Firebase configuration
+		  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		  var firebaseConfig = {
+		    apiKey: "AIzaSyCLwmjktfpwLh32sVsGWGzGs169y6YoZJw",
+		    authDomain: "oce-db.firebaseapp.com",
+		    databaseURL: "https://oce-db-default-rtdb.firebaseio.com",
+		    projectId: "oce-db",
+		    storageBucket: "oce-db.appspot.com",
+		    messagingSenderId: "108155715356",
+		    appId: "1:108155715356:web:ccc4337d822ca7bd1c44d9",
+		    measurementId: "G-Y833R8GCNP"
+		  };
+		  // Initialize Firebase
+		  firebase.initializeApp(firebaseConfig);
+		  firebase.analytics();
+
+			var database = firebase.database();
+			database.ref('test/').set({"name": "테스트2", "intro": "인삿말"})
+		</script>
 		<!--prism-->
 		<link rel="stylesheet" href="src/plugin/prism/prism.css">
 		<link rel="stylesheet" href="src/plugin/prism/line-numbers/prism-line-numbers.css">
@@ -39,17 +66,19 @@
 		<!--fontawesome-->
 		<script src="src/plugin/fontawesome/f1ae1c6451.js"></script>
 		<!--page-style-->
-		<link rel="stylesheet" type="text/css" href="src/css/styles.css">
+		<link rel="stylesheet" type="text/css" href="src/css/main.css">
 
 		<div id = "top-bar">
 			<h1 id = Title>&lt;/Online Editor&gt;</h1>
 			<span style="color : white; position: fixed; right: 10px; top: 7px;font-size: 30px;">
-				<i class="top-button fas fa-play-circle" onclick="reload_preview();"></i>
-				<i class="top-button fas fa-download" style="margin-left: 10px" id="save" onclick="download();"></i>
-				<i class="top-button fab fa-github-square" style="margin-left: 10px" onclick="window.location.href = 'https://github.com/dev-baekgom/oce';"></i>
+				<i class="top-button fa fa-play-circle" onclick="reload_preview();"></i>
+				<i class="top-button fas fa-arrow-circle-down" style="margin-left: 10px" id="save" onclick="download();"></i>
+				<i class="top-button fas fa-question-circle" style="margin-left: 10px" onclick="help();"></i>
+				<i class="top-button fas fa-info-circle" style="margin-left: 10px"  onclick="info();"></i>
+				<i class="top-button fab fa-github" style="margin-left: 10px" onclick="window.location.href = 'https://github.com/dev-baekgom/oce';"></i>
 			</span>
 		</div>
-		<script type="text/javascript" src="src/js/javascript.js"></script>
+		<script type="text/javascript" src="src/js/main.js"></script>
 		<textarea id = "editor" class="prism-live line-numbers language-html fill">
 &lt;!--This is an example code to guide you!--&gt;
 &lt;!DOCTYPE html&gt;

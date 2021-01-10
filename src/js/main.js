@@ -19,7 +19,7 @@ function reload_preview(){
 
 function download(){
   bootbox.prompt({
-      title: "Save As..",
+      title: "<b>Save As..</b>",
       backdrop: true,
       callback: function (result) {
         if(result != null){
@@ -57,6 +57,22 @@ function reload_count(){
   var letters =  text.length;
   var words = text.match(/\S+/g).length;
   document.getElementById('wordcount').innerHTML = letters + ' letters / ' + words + ' words';
+}
+
+function info(){
+  bootbox.alert({
+      title: "<b>Information</b>",
+      message: "<b> made by : <a href='https://github.com/dev-baekgom'>dev-baekgom</a> <br><br> &lt;used plugins&gt; <br> 1. <a href='https://prismjs.com/'>prism</a> <br> 2. <a href='https://live.prismjs.com/'>prism-live</a> <br> 3. <a href='https://jquery.com/'>jquery</a> <br> 4. <a href='https://jqueryui.com/'>jquery ui</a> <br> 5. <a href='https://fontawesome.com/'>fontawesome</a> <br> 6. <a href='https://bootboxjs.com/'>bootbox</a> <br> 7. <a href='https://popperjs.com/'>popper</a> <br> 8. <a href='https://getbootstrap.com/'>bootstrap</a> <br><br> special thanks to :  <a href='https://google.com/'>google</a>, <a href='https://stackoverflow.com/'>stackoverflow</a>, odyssey members</b>",
+      backdrop: true
+  })
+}
+
+function help(){
+  bootbox.alert({
+    title: "<b>Need help?</b>",
+    message: "<b>Welcome to online editor! <br><br> 1. You can edit your code in the code area. <br> 2.Click the play button to preview your code! <br> 3. Download it by clicking the download button on the top bar! <br><br> For more information, visit <a href='https://github.com/dev-baekgom/oce'>my github!</a></b>",
+    backdrop: true
+  })
 }
 
 var isCtrl = false;

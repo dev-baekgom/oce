@@ -17,33 +17,6 @@
 		<!--clicky-->
 		<script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101293020);</script>
 		<script async src="//static.getclicky.com/js"></script>
-		<!-- The core Firebase JS SDK is always required and must be listed first -->
-		<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
-
-		<!-- TODO: Add SDKs for Firebase products that you want to use
-		     https://firebase.google.com/docs/web/setup#available-libraries -->
-		<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
-
-		<script>
-		  // Your web app's Firebase configuration
-		  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-		  var firebaseConfig = {
-		    apiKey: "AIzaSyCLwmjktfpwLh32sVsGWGzGs169y6YoZJw",
-		    authDomain: "oce-db.firebaseapp.com",
-		    databaseURL: "https://oce-db-default-rtdb.firebaseio.com",
-		    projectId: "oce-db",
-		    storageBucket: "oce-db.appspot.com",
-		    messagingSenderId: "108155715356",
-		    appId: "1:108155715356:web:ccc4337d822ca7bd1c44d9",
-		    measurementId: "G-Y833R8GCNP"
-		  };
-		  // Initialize Firebase
-		  firebase.initializeApp(firebaseConfig);
-		  firebase.analytics();
-
-			var database = firebase.database();
-			database.ref('test/').set({"name": "테스트2", "intro": "인삿말"})
-		</script>
 		<!--prism-->
 		<link rel="stylesheet" href="src/plugin/prism/prism.css">
 		<link rel="stylesheet" href="src/plugin/prism/line-numbers/prism-line-numbers.css">
@@ -102,5 +75,22 @@
 			<iframe id="preview" frameborder="0"></iframe>
 		</div>
 		<div id="wordcount">0 words</div>
+		<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase.js"></script>
+		<script>
+			var config = {
+				apiKey: "AIzaSyCLwmjktfpwLh32sVsGWGzGs169y6YoZJw",
+				authDomain: "oce-db.firebaseapp.com",
+				databaseURL: "https://oce-db-default-rtdb.firebaseio.com",
+				storageBucket: "oce-db.appspot.com"
+			};
+			firebase.initializeApp(config);
+
+			var database = firebase.database();
+			firebase.database().ref('test/' + 1).set({
+				username: 'name',
+				email: 'email',
+				profile_picture : 'imageUrl'
+			});
+		</script>
 	</body>
 </html>

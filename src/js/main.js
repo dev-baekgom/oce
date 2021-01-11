@@ -70,7 +70,7 @@ function info(){
 function help(){
   bootbox.alert({
     title: "<b>Need help?</b>",
-    message: "<b>Welcome to online editor! <br><br> 1. You can edit your code in the code area. <br> 2.Click the play button to preview your code! <br> 3. Download it by clicking the download button on the top bar! <br><br> For more information, visit <a href='https://github.com/dev-baekgom/oce'>my github!</a></b>",
+    message: "<b>Welcome to online editor! <br><br> 1. You can edit your code in the code area. <br> 2.Click the play button to preview your code! <br> 3. Download it by clicking the download button on the top bar! <br> 4. Share your code by clicking upload button! <br> 5. Open Your code by clicking the button next to it!  <br><br> For more information, visit <a href='https://github.com/dev-baekgom/oce'>my github!</a></b>",
     backdrop: true
   })
 }

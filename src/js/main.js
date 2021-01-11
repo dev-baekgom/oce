@@ -90,6 +90,17 @@ document.onkeydown=function(e){
   }
 }
 
+function nts(num){
+  var s = '', t;
+
+  while (num > 0) {
+    t = (num - 1) % 26;
+    s = String.fromCharCode(65 + t) + s;
+    num = (num - t)/26 | 0;
+  }
+  return s || undefined;
+}
+
 var firebaseConfig = {
   apiKey: "AIzaSyA295_5XpT7iR9-2H7wANz_3mKAlXvfjL8",
   authDomain: "oce-fb.firebaseapp.com",
@@ -103,12 +114,12 @@ firebase.initializeApp(firebaseConfig);
 function firebase_upload_code(){
     firebase.database().ref('code/num').once('value').then((snapshot) => {
       var no = snapshot.val();
-      firebase.database().ref('html/code/' + no).set({
+      firebase.database().ref('html/code/' + nts(no)).set({
       text : document.getElementById('editor').value
     })
     bootbox.alert({
       title: "<b>Your Code's Url is..</b>",
-      message: "<b>" + no + "</b>",
+      message: "<b>" + nts(no) + "</b>",
       backdrop: true
     })
     firebase.database().ref('code/num').set(no+1);

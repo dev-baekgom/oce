@@ -25,8 +25,8 @@ function download(){
         if(result != null){
           if(result == ''){
             bootbox.alert({
-              title: 'Hey!!',
-              message: 'Type something!!!',
+              title: '<b>Hey!!</b>',
+              message: '<b>Type something!!!',
               backdrop: true
             })
           }
@@ -88,4 +88,64 @@ document.onkeydown=function(e){
       download();
       return false;
   }
+}
+
+var firebaseConfig = {
+  apiKey: "AIzaSyA295_5XpT7iR9-2H7wANz_3mKAlXvfjL8",
+  authDomain: "oce-fb.firebaseapp.com",
+  projectId: "oce-fb",
+  storageBucket: "oce-fb.appspot.com",
+  messagingSenderId: "51123601799",
+  appId: "1:51123601799:web:d6ac5e633774e546695322"
+};
+firebase.initializeApp(firebaseConfig);
+
+function firebase_upload_code(){
+    firebase.database().ref('code/num').once('value').then((snapshot) => {
+      var no = snapshot.val();
+      firebase.database().ref('html/code/' + no).set({
+      text : document.getElementById('editor').value
+    })
+    bootbox.alert({
+      title: "<b>Your Code's Url is..</b>",
+      message: "<b>" + no + "</b>",
+      backdrop: true
+    })
+    firebase.database().ref('code/num').set(no+1);
+  })
+}
+
+function firebase_download_code(num){
+  bootbox.prompt({
+      title: "<b>Enter your Code's Url</b>",
+      backdrop: true,
+      callback: function (result) {
+        if(result != null){
+          if(result == ''){
+            bootbox.alert({
+              title: '<b>Hey!!</b>',
+              message: '<b>Type something!!!</b>',
+              backdrop: true
+            })
+          }
+          else {
+            firebase.database().ref('html/code/'+ result + '/text').once('value').then((snapshot) => {
+              var text = snapshot.val();
+              if(text == null){
+                bootbox.alert({
+                  title: 'Alert',
+                  message: 'There is no such url.',
+                  backdrop: true
+                })
+              }
+              else{
+                document.getElementById('editor').value = text;
+                $("code.language-html").text(text)
+                Prism.highlightAll();
+              }
+            })
+          }
+        }
+      }
+  });
 }

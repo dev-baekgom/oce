@@ -37,6 +37,7 @@
 		<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/bootstrap.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 		<!--fontawesome-->
+		<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 		<script src="src/plugin/fontawesome/f1ae1c6451.js"></script>
 		<!--page-style-->
 		<link rel="stylesheet" type="text/css" href="src/css/main.css">
@@ -44,13 +45,18 @@
 		<div id = "top-bar">
 			<h1 id = Title>&lt;/Online Editor&gt;</h1>
 			<span style="color : white; position: fixed; right: 10px; top: 7px;font-size: 30px;">
-				<i class="top-button fa fa-play-circle" onclick="reload_preview();"></i>
-				<i class="top-button fas fa-arrow-circle-down" style="margin-left: 10px" id="save" onclick="download();"></i>
+				<i class="top-button fa fa-sync-alt" onclick="reload_preview();"></i>
+				<i class="top-button fas fas fa-download" style="margin-left: 10px" id="save" onclick="download();"></i>
+				<i class="top-button fas fa-file-upload" style="margin-left: 10px" onclick="firebase_upload_code();"></i>
+				<i class="top-button fas fa-file-download" style="margin-left: 10px" onclick="firebase_download_code();"></i>
 				<i class="top-button fas fa-question-circle" style="margin-left: 10px" onclick="help();"></i>
 				<i class="top-button fas fa-info-circle" style="margin-left: 10px"  onclick="info();"></i>
 				<i class="top-button fab fa-github" style="margin-left: 10px" onclick="window.location.href = 'https://github.com/dev-baekgom/oce';"></i>
 			</span>
 		</div>
+		<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
 		<script type="text/javascript" src="src/js/main.js"></script>
 		<textarea id = "editor" class="prism-live line-numbers language-html fill">
 &lt;!--This is an example code to guide you!--&gt;

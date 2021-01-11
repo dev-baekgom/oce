@@ -1,6 +1,7 @@
 $(document).ready(function() {
   reload_count();
   reload_preview();
+  patch_note();
 });
 
 $( function() {
@@ -114,16 +115,17 @@ firebase.initializeApp(firebaseConfig);
 function firebase_upload_code(){
     firebase.database().ref('code/num').once('value').then((snapshot) => {
       var no = snapshot.val();
-      firebase.database().ref('html/code/' + nts(no)).set({
-      text : document.getElementById('editor').value
+      make_url(no);
+      firebase.database().ref('html/code/' + url).set({
+        text : document.getElementById('editor').value
+      })
+      bootbox.alert({
+        title: "<b>Your Code's Url is..</b>",
+        message: "<b>" + url + "</b>",
+        backdrop: true
+      })
+      firebase.database().ref('code/num').set(no+1);
     })
-    bootbox.alert({
-      title: "<b>Your Code's Url is..</b>",
-      message: "<b>" + nts(no) + "</b>",
-      backdrop: true
-    })
-    firebase.database().ref('code/num').set(no+1);
-  })
 }
 
 function firebase_download_code(num){
@@ -144,8 +146,8 @@ function firebase_download_code(num){
               var text = snapshot.val();
               if(text == null){
                 bootbox.alert({
-                  title: 'Alert',
-                  message: 'There is no such url.',
+                  title: '<b>Invaild Url</b>',
+                  message: '<b>There is no such url!</b>',
                   backdrop: true
                 })
               }
@@ -159,4 +161,25 @@ function firebase_download_code(num){
         }
       }
   });
+}
+
+function make_url(no){
+  url = nts(Math.floor(Math.random() * (no*9999999)) + 1);
+  firebase.database().ref('html/code/' + url + '/text').once('value').then((snapshot) => {
+    text = snapshot.val();
+    if(text == null){
+      return url;
+    }
+    else{
+      return make_url();
+    }
+  })
+}
+
+function patch_note(){
+  bootbox.alert({
+    title: '<b>Patch Note 📒</b>',
+    message: '<b>1. Added Code Sharing <br> 2. Better UI</b>',
+    backdrop: true
+  })
 }

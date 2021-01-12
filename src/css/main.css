@@ -57,7 +57,7 @@ body{font-family: 'Ubuntu', sans-serif;}
   width: 100%;
 }
 
-#wordcount{
+#bottom_menu{
   position: fixed;
   right: 10px;
   bottom: 10px;

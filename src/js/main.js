@@ -57,7 +57,7 @@ function reload_count(){
   var text = document.getElementById('editor').value;
   var letters =  text.length;
   var words = text.match(/\S+/g).length;
-  document.getElementById('wordcount').innerHTML = letters + ' letters / ' + words + ' words';
+  document.getElementById('bottom_menu').innerHTML = letters + ' letters / ' + words + ' words' + "<i class='top-button fas fa-question-circle' style='margin-left: 10px' onclick='help();'></i><i class='top-button fas fa-info-circle' style='margin-left: 10px'  onclick='info();'></i><i class='top-button fab fa-github' style='margin-left: 10px' onclick='window.location.href = 'https://github.com/dev-baekgom/oce';'></i>";
 }
 
 function info(){

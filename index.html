@@ -14,9 +14,6 @@
 				}, 1);
 			}
 		</script>
-		<!--clicky-->
-		<script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101293020);</script>
-		<script async src="//static.getclicky.com/js"></script>
 		<!--prism-->
 		<link rel="stylesheet" href="src/plugin/prism/prism.css">
 		<link rel="stylesheet" href="src/plugin/prism/line-numbers/prism-line-numbers.css">
@@ -47,7 +44,7 @@
 			<span style="color : white; position: fixed; right: 10px; top: 7px;font-size: 30px;">
 				<i class="top-button fa fa-sync-alt" onclick="reload_preview();"></i>
 				<i class="top-button fas fas fa-download" style="margin-left: 10px" id="save" onclick="download();"></i>
-				<i class="top-button fas fa-file-upload" style="margin-left: 10px" onclick="firebase_upload_code();"></i>
+				<i class="top-button fas fa-file-upload" style="margin-left: 10px" onclick="firebase_upload_code(url);"></i>
 				<i class="top-button fas fa-file-download" style="margin-left: 10px" onclick="firebase_download_code();"></i>
 			</span>
 		</div>
@@ -67,10 +64,10 @@
 		&lt;h1 style = "font-size : 35px; /*You can use styles, too!*/"&gt;Hello! Thank you for using this editor!&lt;/h1&gt;
 		&lt;ul&gt;
 			&lt;li&gt;You can edit code in this text area!&lt;/li&gt;
-			&lt;li&gt;And you can see the preview in the window next to it!&lt;/li&gt;
-			&lt;li&gt;Press the play button to reload preivew section!&lt;/li&gt;
-			&lt;li&gt;Clcik on "Example.html" and change your file name!&lt;/li&gt;
-			&lt;li&gt;Press the save button to save the code to your computer!&lt;/li&gt;
+			&lt;li&gt;Click the reload button to preview your code!&lt;/li&gt;
+			&lt;li&gt;Download it by clicking the download button!&lt;/li&gt;
+			&lt;li&gt;Share your code by clicking upload button!&lt;/li&gt;
+			&lt;li&gt;Open Your code by clicking the button next to it!&lt;/li&gt;
  		&lt;/ul&gt;
 	&lt;/body&gt;
 &lt;/html&gt;</textarea>

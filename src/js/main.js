@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  make_url();
   reload_count();
   reload_preview();
   patch_note();
@@ -62,7 +63,7 @@ function reload_count(){
 
 function info(){
   bootbox.alert({
-      title: "<b>Information</b>",
+      title: "<b>Information 🧾</b>",
       message: "<b> made by : <a href='https://github.com/dev-baekgom'>dev-baekgom</a> <br><br> &lt;used plugins&gt; <br> 1. <a href='https://prismjs.com/'>prism</a> <br> 2. <a href='https://live.prismjs.com/'>prism-live</a> <br> 3. <a href='https://jquery.com/'>jquery</a> <br> 4. <a href='https://jqueryui.com/'>jquery ui</a> <br> 5. <a href='https://fontawesome.com/'>fontawesome</a> <br> 6. <a href='https://bootboxjs.com/'>bootbox</a> <br> 7. <a href='https://popperjs.com/'>popper</a> <br> 8. <a href='https://getbootstrap.com/'>bootstrap</a> <br><br> special thanks to :  <a href='https://google.com/'>google</a>, <a href='https://stackoverflow.com/'>stackoverflow</a>, odyssey members</b>",
       backdrop: true
   })
@@ -70,8 +71,8 @@ function info(){
 
 function help(){
   bootbox.alert({
-    title: "<b>Need help?</b>",
-    message: "<b>Welcome to online editor! <br><br> 1. You can edit your code in the code area. <br> 2.Click the play button to preview your code! <br> 3. Download it by clicking the download button on the top bar! <br> 4. Share your code by clicking upload button! <br> 5. Open Your code by clicking the button next to it!  <br><br> For more information, visit <a href='https://github.com/dev-baekgom/oce'>my github!</a></b>",
+    title: "<b>Need help? 💬</b>",
+    message: "<b>Welcome to online editor! <br><br> 1. You can edit your code in the code area. <br> 2. Click the reload button to preview your code! <br> 3. Download it by clicking the download button! <br> 4. Share your code by clicking upload button! <br> 5. Open Your code by clicking the button next to it!</b>",
     backdrop: true
   })
 }
@@ -79,11 +80,17 @@ function help(){
 var isCtrl = false;
 document.onkeyup=function(e){
   reload_count();
+  firebase.database().ref('html/code/' + url).set({
+    text : document.getElementById('editor').value
+  })
   if(e.keyCode == 17) isCtrl=false;
 }
 
 document.onkeydown=function(e){
   reload_count();
+  firebase.database().ref('html/code/' + url).set({
+    text : document.getElementById('editor').value
+  })
   if(e.keyCode == 17) isCtrl=true;
   if(e.keyCode == 83 && isCtrl == true) {
       download();
@@ -112,23 +119,15 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-function firebase_upload_code(){
-    firebase.database().ref('code/num').once('value').then((snapshot) => {
-      var no = snapshot.val();
-      make_url(no);
-      firebase.database().ref('html/code/' + url).set({
-        text : document.getElementById('editor').value
-      })
-      bootbox.alert({
-        title: "<b>Your Code's Url is..</b>",
-        message: "<b>" + url + "</b>",
-        backdrop: true
-      })
-      firebase.database().ref('code/num').set(no+1);
+function firebase_upload_code(url){
+    bootbox.alert({
+      title: "<b>Your Code's Url is..</b>",
+      message: "<b>" + url + "</b>",
+      backdrop: true
     })
 }
 
-function firebase_download_code(num){
+function firebase_download_code(){
   bootbox.prompt({
       title: "<b>Enter your Code's Url</b>",
       backdrop: true,
@@ -163,23 +162,26 @@ function firebase_download_code(num){
   });
 }
 
-function make_url(no){
-  url = nts(Math.floor(Math.random() * (no*9999999)) + 1);
-  firebase.database().ref('html/code/' + url + '/text').once('value').then((snapshot) => {
-    text = snapshot.val();
-    if(text == null){
-      return url;
-    }
-    else{
-      return make_url();
-    }
+function make_url(){
+  firebase.database().ref('code/num').once('value').then((snapshot) => {
+    var no = snapshot.val();
+    url = nts(Math.floor(Math.random() * (no*9999999)) + 1);
+    firebase.database().ref('html/code/' + url + '/text').once('value').then((snapshot) => {
+      text = snapshot.val();
+      if(text == null){
+        firebase.database().ref('code/num').set(no+1);
+        return url;
+      }
+      else{
+        return make_url();
+      }
+    })
   })
 }
 
 function patch_note(){
   bootbox.alert({
-    title: '<b>Patch Note 📒</b>',
-    message: '<b>1. Added Code Sharing <br> 2. Better UI</b>',
-    backdrop: true
+    title: '<b>Patch Note 📒 + Alert 📢</b>',
+    message: "<b>1. Changed example code 📝 <br> 2. Better URL 🔗 <br><br> <span style='color: red;'>IMPORTANT ALERT!! 📢</span> <br> We regularly delete data from database to make space! <br> So make sure you download & backup your code!</b>",
   })
 }

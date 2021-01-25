@@ -1,5 +1,6 @@
+var url = nts(Math.floor(Math.random() * 9999999) + 1);
+
 $(document).ready(function() {
-  make_url();
   reload_count();
   reload_preview();
   patch_note();
@@ -161,23 +162,6 @@ function firebase_download_code(){
         }
       }
   });
-}
-
-function make_url(){
-  firebase.database().ref('code/num').on('value', (snapshot) => {
-    var no = snapshot.val();
-    url = nts(Math.floor(Math.random() * (no*9999999)) + 1);
-    firebase.database().ref('html/code/' + url + '/text').once('value').then((snapshot) => {
-      text = snapshot.val();
-      if(text == null){
-        firebase.database().ref('code/num').set(no+1);
-        return url;
-      }
-      else{
-        return make_url();
-      }
-    })
-  })
 }
 
 function patch_note(){

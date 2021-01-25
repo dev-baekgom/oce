@@ -141,7 +141,7 @@ function firebase_download_code(){
             })
           }
           else {
-            firebase.database().ref('html/code/'+ result + '/text').once('value').then((snapshot) => {
+            firebase.database().ref('html/code/'+ result + '/text').on('value', (snapshot) => {
               var text = snapshot.val();
               if(text == null){
                 bootbox.alert({

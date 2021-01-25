@@ -164,7 +164,7 @@ function firebase_download_code(){
 }
 
 function make_url(){
-  firebase.database().ref('code/num').once('value').then((snapshot) => {
+  firebase.database().ref('code/num').on('value', (snapshot) => {
     var no = snapshot.val();
     url = nts(Math.floor(Math.random() * (no*9999999)) + 1);
     firebase.database().ref('html/code/' + url + '/text').once('value').then((snapshot) => {

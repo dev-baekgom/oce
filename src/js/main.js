@@ -84,6 +84,12 @@ document.onkeyup=function(e){
   firebase.database().ref('html/code/' + url).set({
     text : document.getElementById('editor').value
   })
+  firebase.database().ref('html/code/'+ url + '/text').on('value', (snapshot) => {
+    var text = snapshot.val();
+    document.getElementById('editor').value = text;
+    $("code.language-html").text(text)
+    Prism.highlightAll();
+  })
   if(e.keyCode == 17) isCtrl=false;
 }
 
@@ -91,6 +97,12 @@ document.onkeydown=function(e){
   reload_count();
   firebase.database().ref('html/code/' + url).set({
     text : document.getElementById('editor').value
+  })
+  firebase.database().ref('html/code/'+ url + '/text').on('value', (snapshot) => {
+    var text = snapshot.val();
+    document.getElementById('editor').value = text;
+    $("code.language-html").text(text)
+    Prism.highlightAll();
   })
   if(e.keyCode == 17) isCtrl=true;
   if(e.keyCode == 83 && isCtrl == true) {

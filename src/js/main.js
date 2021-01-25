@@ -151,6 +151,7 @@ function firebase_download_code(){
                 })
               }
               else{
+                url = result;
                 document.getElementById('editor').value = text;
                 $("code.language-html").text(text)
                 Prism.highlightAll();
@@ -182,6 +183,6 @@ function make_url(){
 function patch_note(){
   bootbox.alert({
     title: '<b>Patch Note 📒 + Alert 📢</b>',
-    message: "<b>1. Changed example code 📝 <br> 2. Better URL 🔗 <br><br> <span style='color: red;'>IMPORTANT ALERT!! 📢</span> <br> We regularly delete data from database to make space! <br> So make sure you download & backup your code!</b>",
+    message: "<b>1. Better URL 🔗 <br>2. Live Sharing added 📲 <br><br> <span style='color: red;'>IMPORTANT ALERT!! 📢</span> <br> We regularly delete data from database to make space! <br> So make sure you download & backup your code!</b>",
   })
 }

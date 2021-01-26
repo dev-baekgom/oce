@@ -3,7 +3,7 @@ var qurl = query.url;
 
 if(qurl == null){
   var url = nts(Math.floor(Math.random() * 9999999) + 1);
-  window.location.herf = "https://dev-baekgom.github.io/oce?url=" + url;
+  window.location.href = "https://dev-baekgom.github.io/oce?url=" + url;
 }
 else{
   var url = qurl;

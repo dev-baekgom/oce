@@ -143,7 +143,7 @@ firebase.initializeApp(firebaseConfig);
 function firebase_upload_code(url){
     bootbox.alert({
       title: "<b>Your Code's Url is..</b>",
-      message: "<b>" + url + "</b>",
+      message: "<b>" + url + " <br> or <br> https://dev-baekgom.github.io/oce/?url=" + url + "</b>",
       backdrop: true
     })
 }

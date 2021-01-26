@@ -1,6 +1,6 @@
 var query = getQueryStringObject();
 var qurl = query.url;
-alert(qurl);
+
 if(qurl == null){
   var url = nts(Math.floor(Math.random() * 9999999) + 1);
 }
@@ -140,7 +140,7 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-function firebase_upload_code(url){
+function firebase_upload_code(){
     bootbox.alert({
       title: "<b>Your Code's Url is..</b>",
       message: "<b>" + url + " <br> or <br> https://dev-baekgom.github.io/oce/?url=" + url + "</b>",

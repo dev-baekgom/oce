@@ -1,5 +1,6 @@
 var query = getQueryStringObject();
 var qurl = query.url;
+alert(qurl);
 if(qurl == null){
   var url = nts(Math.floor(Math.random() * 9999999) + 1);
 }

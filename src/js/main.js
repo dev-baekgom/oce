@@ -1,13 +1,3 @@
-var firebaseConfig = {
-  apiKey: "AIzaSyA295_5XpT7iR9-2H7wANz_3mKAlXvfjL8",
-  authDomain: "oce-fb.firebaseapp.com",
-  projectId: "oce-fb",
-  storageBucket: "oce-fb.appspot.com",
-  messagingSenderId: "51123601799",
-  appId: "1:51123601799:web:d6ac5e633774e546695322"
-};
-firebase.initializeApp(firebaseConfig);
-
 var query = getQueryStringObject();
 var qurl = query.url;
 
@@ -17,12 +7,7 @@ if(qurl == null){
 }
 else{
   var url = qurl;
-  firebase.database().ref('html/code/'+ url + '/text').on('value', (snapshot) => {
-    var text = snapshot.val();
-    document.getElementById('editor').value = text;
-    $("code.language-html").text(text)
-    Prism.highlightAll();
-  })
+  firebase_download_code();
 }
 
 $(document).ready(function() {
@@ -171,19 +156,10 @@ function firebase_download_code(){
           else {
             firebase.database().ref('html/code/'+ result + '/text').on('value', (snapshot) => {
               var text = snapshot.val();
-              if(text == null){
-                bootbox.alert({
-                  title: '<b>Invaild Url</b>',
-                  message: '<b>There is no such url!</b>',
-                  backdrop: true
-                })
-              }
-              else{
-                url = result;
-                document.getElementById('editor').value = text;
-                $("code.language-html").text(text)
-                Prism.highlightAll();
-              }
+              url = result;
+              document.getElementById('editor').value = text;
+              $("code.language-html").text(text)
+              Prism.highlightAll();
             })
           }
         }

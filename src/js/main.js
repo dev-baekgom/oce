@@ -1,3 +1,13 @@
+var firebaseConfig = {
+  apiKey: "AIzaSyA295_5XpT7iR9-2H7wANz_3mKAlXvfjL8",
+  authDomain: "oce-fb.firebaseapp.com",
+  projectId: "oce-fb",
+  storageBucket: "oce-fb.appspot.com",
+  messagingSenderId: "51123601799",
+  appId: "1:51123601799:web:d6ac5e633774e546695322"
+};
+firebase.initializeApp(firebaseConfig);
+
 var query = getQueryStringObject();
 var qurl = query.url;
 
@@ -136,16 +146,6 @@ function nts(num){
   }
   return s || undefined;
 }
-
-var firebaseConfig = {
-  apiKey: "AIzaSyA295_5XpT7iR9-2H7wANz_3mKAlXvfjL8",
-  authDomain: "oce-fb.firebaseapp.com",
-  projectId: "oce-fb",
-  storageBucket: "oce-fb.appspot.com",
-  messagingSenderId: "51123601799",
-  appId: "1:51123601799:web:d6ac5e633774e546695322"
-};
-firebase.initializeApp(firebaseConfig);
 
 function firebase_upload_code(){
     bootbox.alert({

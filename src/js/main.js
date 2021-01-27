@@ -8,24 +8,7 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-var query = getQueryStringObject();
-var qurl = query.url;
-
-if(qurl == null){
-  var url = nts(Math.floor(Math.random() * 9999999) + 1);
-  window.location.href = "https://dev-baekgom.github.io/oce?url=" + url;
-}
-else{
-  var url = qurl;
-  if(text != null){
-    firebase.database().ref('html/code/'+ url + '/text').on('value', (snapshot) => {
-      var text = snapshot.val();
-      document.getElementById('editor').value = text;
-      $("code.language-html").text(text)
-      Prism.highlightAll();
-    })
-  }
-}
+var url = nts(Math.floor(Math.random() * 9999999) + 1);
 
 $(document).ready(function() {
   reload_count();
@@ -152,7 +135,7 @@ function nts(num){
 function firebase_upload_code(){
     bootbox.alert({
       title: "<b>Your Code's Url is..</b>",
-      message: "<b><center>" + url + ", <br> <a href = 'https://dev-baekgom.github.io/oce/?url=" + url + "'>https://dev-baekgom.github.io/oce/?url=" + url + "</a></center></b>",
+      message: "<b><center>" + url + "</center></b>",
       backdrop: true
     })
 }
@@ -198,18 +181,4 @@ function patch_note(){
     title: '<b>Patch Note 📒 + Alert 📢</b>',
     message: "<b>1. Better URL 🔗 <br>2. Live Sharing added 📲 <br><br> <span style='color: red;'>IMPORTANT ALERT!! 📢</span> <br> We regularly delete data from database to make space! <br> So make sure you download & backup your code!</b>",
   })
-}
-
-function getQueryStringObject() {
-    var a = window.location.search.substr(1).split('&');
-    if (a == "") return {};
-    var b = {};
-    for (var i = 0; i < a.length; ++i) {
-        var p = a[i].split('=', 2);
-        if (p.length == 1)
-            b[p[0]] = "";
-        else
-            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
-    }
-    return b;
 }

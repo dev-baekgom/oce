@@ -8,7 +8,24 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-var url = nts(Math.floor(Math.random() * 9999999) + 1);
+var query = getQueryStringObject();
+var qurl = query.url;
+
+if(qurl == null){
+  var url = nts(Math.floor(Math.random() * 9999999) + 1);
+  window.location.href = "https://dev-baekgom.github.io/oce?url=" + url;
+}
+else{
+  var url = qurl;
+  if(text != null){
+    firebase.database().ref('html/code/'+ url + '/text').on('value', (snapshot) => {
+      var text = snapshot.val();
+      document.getElementById('editor').value = text;
+      $("code.language-html").text(text)
+      Prism.highlightAll();
+    })
+  }
+}
 
 $(document).ready(function() {
   reload_count();
@@ -135,7 +152,7 @@ function nts(num){
 function firebase_upload_code(){
     bootbox.alert({
       title: "<b>Your Code's Url is..</b>",
-      message: "<b><center>" + url + "</center></b>",
+      message: "<b><center>" + url + ", <br> <a href = 'https://dev-baekgom.github.io/oce/?url=" + url + "'>https://dev-baekgom.github.io/oce/?url=" + url + "</a></center></b>",
       backdrop: true
     })
 }

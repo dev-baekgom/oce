@@ -7,7 +7,12 @@ if(qurl == null){
 }
 else{
   var url = qurl;
-  firebase_download_code();
+  firebase.database().ref('html/code/'+ url + '/text').on('value', (snapshot) => {
+    var text = snapshot.val();
+    document.getElementById('editor').value = text;
+    $("code.language-html").text(text)
+    Prism.highlightAll();
+  })
 }
 
 $(document).ready(function() {
